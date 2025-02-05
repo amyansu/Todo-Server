@@ -30,7 +30,7 @@ app.get('/todos', async (req, res) => {
 app.post('/add', async (req, res) => {
     const todo = new Todo({
         title: req.body.title,
-        check: false,
+        checkbox: false,
         id: Math.floor(Math.random() * 1000000)
     })
     await todo.save();
