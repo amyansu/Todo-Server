@@ -27,12 +27,7 @@ app.post('/add', async (req, res) => {
 
 app.put('/checkbox/:id', async (req, res) => {
     const id = req.params.id;
-    const checkbox = await db.select({
-        checkbox: todosTable.checkbox,
-      }).from(todosTable).where(eq(todosTable.id, id));
-    //   console.log(checkbox)
-    //   console.log(checkbox[0].checkbox)
-    const todo = await db.update(todosTable).set({checkbox:!checkbox[0].checkbox}).where(eq(todosTable.id, id)).returning({ id: todosTable.id });
+    const todo = await db.update(todosTable).set({ checkbox: req.query.checkbox }).where(eq(todosTable.id, id)).returning({ id: todosTable.id });
     res.json({ id: todo[0].id })
 });
 
